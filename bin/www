@@ -88,3 +88,5 @@ function onListening() {
     : 'port ' + addr.port;
   debug('📣 Listening on ' + bind);
 }
+
+debug.enabled = true;
