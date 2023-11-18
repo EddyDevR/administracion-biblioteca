@@ -1,1 +1,1 @@
-# Adminisitracion de Biblioteca
+# Administracion de biblioteca
