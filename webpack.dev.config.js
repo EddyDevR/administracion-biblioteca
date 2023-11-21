@@ -1,5 +1,7 @@
 // Importar el modulo Path un administrador de rutas de archivos
 const path = require('path');
+// Importing Extract Plugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Exportamos un Configuration Options Object   
 module.exports = {
@@ -51,7 +53,17 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            // Regla para cagar estilos
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
             }
         ]
-    }
+    },
+    // Sección de Plugins
+    plugins: [new MiniCssExtractPlugin({
+        // Archivo css de salida
+        filename: 'styles/app.css'
+    })]
 }

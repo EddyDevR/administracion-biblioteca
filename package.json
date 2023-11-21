@@ -7,11 +7,13 @@
     "dev": "DEBUG=administracionbiblioteca:server babel-watch ./server/bin/www",
     "devc": "NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
     "devb": "babel-watch ./server/bin/www",
-    "cleans": "rm -rf ./dist",
-    "cleanc": "rm -f ./public/bundle.js",
+    "clean": "rm -rf ./dist",
+    "cleanc": "rm -f ./public/bundle.js ./public/styles/app.css",
     "b:s": "npm run cleans && babel ./server --out-dir dist --copy-files",
     "b:c": "npm run cleanc && webpack --config ./webpack.config.js --mode production",
-    "build": "npm run b:c && npm run b:s"
+    "build": "npm run b:c && npm run b:s",
+    "builds": "npm run clean && babel ./server --out-dir dist --copy-files",
+    "buildc": "npm run cleanc && webpack --config ./webpack.config.js --mode production"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -31,6 +33,8 @@
     "babel-loader": "^9.1.3",
     "babel-watch": "^7.8.1",
     "core-js": "^3.32.2",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
     "webpack": "^5.76.1",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
