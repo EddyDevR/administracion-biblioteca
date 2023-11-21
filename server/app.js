@@ -4,7 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var debug = require('debug')('administracionbiblioteca:server');
+var debug = require('debug')('app-dwpcii:server');
 
 
 var indexRouter = require('./routes/index');
