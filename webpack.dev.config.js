@@ -1,7 +1,7 @@
-// Importar el modulo Path
+// Importar el modulo Path un administrador de rutas de archivos
 const path = require('path');
 
-// Exportamos un Configuration Options Object
+// Exportamos un Configuration Options Object   
 module.exports = {
     // 1. Estableciendo el archivo indexador
     // del front-end
@@ -16,6 +16,9 @@ module.exports = {
         publicPath: "/"
     },
     // 3. Configurar el Servidor de Desarrollo
+    // El servidor de desarrollo sirve los archivos
+    // empaquetados para no tener que estar reempaquetando
+    // en cada cambio del código.
     devServer: {
         // 3.1 Folder de estaticos
         static: path.join(__dirname, 'public'),
