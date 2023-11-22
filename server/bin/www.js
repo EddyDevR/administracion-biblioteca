@@ -4,39 +4,17 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('administracionbiblioteca:server');
-var http = require('http');
+import debug from 'debug';
+import http from 'http';
+import app from '../app';
 
 /**
  * Get port from environment and store in Express.
  */
+const normalizePort = (val) => {
+  const port = parseInt(val, 10);
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);//app es una función o podriamos decir un callback
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError); //callback
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
     return val;
   }
@@ -47,8 +25,19 @@ function normalizePort(val) {
   }
 
   return false;
-}
+};
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
 
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app); // app es una función o podriamos decir un callback
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
 /**
  * Event listener for HTTP server "error" event.
  */
@@ -58,18 +47,16 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -82,9 +69,14 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('📣 Listening on ' + bind);
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  debug(`📣 Listening on ${bind}`);
 }
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError); // callback
+server.on('listening', onListening);

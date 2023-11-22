@@ -1,63 +1,59 @@
-//cargando dependencias 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var debug = require('debug')('app-dwpcii:server');
+// Cargando dependencias
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-// cargando la instacion de express
-var app = express();
+// Cargando la instancia de express
+const app = express();
 
+// Importando webpack y middleware relacionado
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+// Importando configuración de webpack
+const webpackConfig = require('../webpack.dev.config');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const nodeEnvironment = process.env.NODE_ENV || 'production';
 
-// Setting Webpack Modules
-import webpack from 'webpack';
-import WebpackDevMiddleware from 'webpack-dev-middleware';
-import WebpackHotMiddleware from 'webpack-hot-middleware';
-// Importing webpack configuration
-import webpackConfig from '../webpack.dev.config';
-
-const nodeEnviroment = process.env.NODE_ENV || 'production'
-
-// Deciding if we add webpack middleware or not
-if (nodeEnviroment === 'development') {
-  // Start Webpack dev server
-  console.log("🛠️  Ejecutando en modo desarrollo");
-  // Adding the key "mode" with its value "development"
-  webpackConfig.mode = nodeEnviroment;
-  // Setting the dev server port to the same value as the express server
+// Decidiendo si agregar el middleware de webpack o no
+if (nodeEnvironment === 'development') {
+  // Iniciar el servidor de desarrollo de Webpack
+  console.log('🛠️ Ejecutando en modo desarrollo');
+  // Agregando la clave "mode" con su valor "development"
+  webpackConfig.mode = nodeEnvironment;
+  // Estableciendo el puerto del servidor de desarrollo a la misma
+  // valor que el servidor express
   webpackConfig.devServer.port = process.env.PORT;
-  // Setting up the HMR (Hot Module Replacement)
+  // Configurando el HMR (Hot Module Replacement)
   webpackConfig.entry = [
-    "webpack-hot-middleware/client?reload=true&timeout=1000",
-    webpackConfig.entry
+    'webpack-hot-middleware/client?reload=true&timeout=1000',
+    ...webpackConfig.entry,
   ];
-  // Agregar el plugin a la configuración de desarrollo
-  // de webpack
+  // Agregando el plugin a la configuración de desarrollo de webpack
   webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
-  // Creating the bundler
-  const bundle = webpack(webpackConfig);
-  // Enabling the webpack middleware
-  app.use(WebpackDevMiddleware(bundle, {
-    publicPath: webpackConfig.output.publicPath
-  }));
-  //  Enabling the webpack HMR
-  app.use(WebpackHotMiddleware(bundle));
+  // Creando el compilador de webpack
+  const compiler = webpack(webpackConfig);
+  // Habilitando el middleware de webpack
+  app.use(
+    webpackDevMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+    }),
+  );
+  // Habilitando el HMR de webpack
+  app.use(webpackHotMiddleware(compiler));
 } else {
-  console.log("🏭 Ejecutando en modo producción 🏭");
+  console.log('🏭 Ejecutando en modo producción 🏭');
 }
 
-
-// configurando el motor de plantillas 
+// Configurando el motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-
-// se establecen los middlewares 
-// es una funcion que recibe un res y req 
+// Estableciendo middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -65,21 +61,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', indexRouter);
-//activa users router cuando se solicita el recurso '/users'
+// Activa el enrutador de usuarios cuando se solicita el recurso '/users'
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
+// Captura 404 y reenvía al controlador de errores
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
+// Controlador de errores
+app.use((err, req, res) => {
+  // Estableciendo las variables locales, solo proporcionando errores en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Renderiza la página de error
   res.status(err.status || 500);
   res.render('error');
 });
