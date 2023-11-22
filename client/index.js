@@ -1,4 +1,14 @@
-// cargando los estilos
-import "./styles/style.css";
-// Mensaje en la consola
-console.log('🎉 Estilos cargados correctamente 🎉');
+// Cargando estilos
+/* eslint-disable no-console */
+import './style.css';
+/* eslint-disable */
+// Importandoe Estilos de Materialize CSS
+import 'materialize-css/dist/css/materialize.css';
+// Importando scripts de Materialize
+import 'materialize-css/dist/js/materialize';
+/* eslint-enable */
+
+// Inicializando Scripts de Materialize para interactividad
+M.AutoInit();
+
+console.log('Webpack Working Middleware!!! 📦');

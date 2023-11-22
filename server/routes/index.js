@@ -1,13 +1,25 @@
-const express = require('express');
+import express from 'express';
+const { Router } = express;
 
-const router = express.Router();
+const router = Router();
 
 /* GET home page. */
-// un GET / se ejecutara esta
-// registro de middlewares de app,tenemos enrutadores
-
-router.get('/', (req, res) => {
-  res.render('index', { title: 'ITGAM', author: 'Eddy' });
+router.get('/', (req, res, next) => {
+  let iconSet = ["⭐","🤖","🍉"];
+  let icon = iconSet[Math.floor(Math.random() * 3)]
+  res.render('index', { title: 'DWPCII-2023A', icon });
 });
 
-module.exports = router;
+router.get('/author', (req, res) => {
+  // Creating a View-Model
+  let author = {
+    "name": "Ivan",
+    "lastname": "Rivalcoba",
+    "twitter": "@rivalcoba",
+    "job": "ITGAM"
+  };
+  // Sending the view-model to be rendered by a View
+  res.render('author', author);
+});
+
+export default router;
