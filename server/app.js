@@ -1,21 +1,20 @@
 // Cargando dependencias
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+// Importando webpack y middleware relacionado
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import usersRouter from './routes/users';
+import indexRouter from './routes/index';
+// Importando configuración de webpack
+import webpackConfig from '../webpack.dev.config';
 
 // Cargando la instancia de express
 const app = express();
-
-// Importando webpack y middleware relacionado
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const usersRouter = require('./routes/users');
-const indexRouter = require('./routes/index');
-// Importando configuración de webpack
-const webpackConfig = require('../webpack.dev.config');
 
 const nodeEnvironment = process.env.NODE_ENV || 'production';
 
@@ -80,4 +79,4 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
