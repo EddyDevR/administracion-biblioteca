@@ -48,6 +48,9 @@ if (nodeEnviroment === 'development') {
     'webpack-hot-middleware/client?reload=true&timeout=1000',
     webpackConfig.entry,
   ];
+  // Agregar el plugin a la configuración de desarrollo
+  // de webpack
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
   // Creating the bundler
   const bundle = webpack(webpackConfig);
   // Enabling the webpack middleware
@@ -79,5 +82,23 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Registering routes
 router.addRoutes(app);
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  log.info(`404 Pagina no encontrada ${req.method} ${req.originalUrl}`);
+  next(createError(404));
+});
+
+// error handler
+app.use((err, req, res) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  log.error(`${err.status || 500} - ${err.message}`);
+  res.render('error');
+});
 
 export default app;

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production PORT=3000 APP_URL='http://localhost' DEBUG=adminbiblioteca node ./dist/bin/www",
-    "dev": "NODE_ENV=development PORT=3000 APP_URL='http://localhost' DEBUG=adminbiblioteca babel-watch --watch ./server/views ./server/bin/www",
+    "dev": "NODE_ENV=development PORT=3000 APP_URL='http://localhost' DEBUG=adminbibliotecaprojnotes babel-watch --watch ./server/views ./server/bin/www",
     "devc": "NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
     "build": "npm run buildc && npm run builds",
     "builds": "npm run clean && babel ./server --out-dir dist --copy-files",
