@@ -1,6 +1,6 @@
-// Cargando estilos
+// cargando los estilos
 /* eslint-disable no-console */
-import './style.css';
+import './styles/style.css';
 /* eslint-disable */
 // Importandoe Estilos de Materialize CSS
 import 'materialize-css/dist/css/materialize.css';
@@ -11,4 +11,4 @@ import 'materialize-css/dist/js/materialize';
 // Inicializando Scripts de Materialize para interactividad
 M.AutoInit();
 
-console.log('Webpack Working Middleware!!! 📦');
+console.log('administracionbiblioteca!!! 📦');
