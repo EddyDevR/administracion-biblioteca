@@ -11,4 +11,4 @@ import 'materialize-css/dist/js/materialize';
 // Inicializando Scripts de Materialize para interactividad
 M.AutoInit();
 
-console.log('administracionbiblioteca!!! 📦');
+console.log('Webpack Working Middleware!!! 📦');
