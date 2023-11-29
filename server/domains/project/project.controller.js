@@ -17,7 +17,7 @@ const addForm = (req, res) => {
 // GET /project/about
 
 const about = (req, res) => {
-  res.send("🚧 UNDER CONSTRUCTION '/about'  🚧");
+  res.render('home/aboutView', { appVersion: '1.0.0' });
 };
 
 // Controlador Home
