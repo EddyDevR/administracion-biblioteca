@@ -8,6 +8,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 // Library to log http communication
 import morgan from 'morgan';
+import mongoose from 'mongoose';
 
 // Importing template-engine
 import configTemplateEngine from '@server/config/templateEngine';
@@ -67,6 +68,17 @@ if (nodeEnviroment === 'development') {
 
 // Configuring the template engine
 configTemplateEngine(app);
+
+// Database connection Checker
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState === 1) {
+    log.info('✅ Verificación a db exitosa');
+    next();
+  } else {
+    log.info(' ❌ No pasa la verificación de conección a la BD');
+    res.status(503).render('errors/e503View', { layout: 'errors' });
+  }
+});
 
 // Registering middlewares
 // Log all received requests
