@@ -8,6 +8,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 // Library to log http communication
 import morgan from 'morgan';
+// Enable post and delete verbs
+import methodOverride from 'method-override';
 
 // Importing template-engine
 import configTemplateEngine from '@server/config/templateEngine';
@@ -79,6 +81,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Set up the static file server
 app.use(express.static(path.join(__dirname, '../public')));
+// Enable post and delete verbs
+app.use(methodOverride('_method'));
 
 // Registering routes
 router.addRoutes(app);
