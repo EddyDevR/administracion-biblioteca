@@ -6,8 +6,12 @@ import ProjectModel from './project.model';
 
 // Actions methods
 // GET "/project"
-const showDashboard = (req, res) => {
-  res.send('⚠️ UNDER CONSTRUCTION: GET /project ⚠️');
+const showDashboard = async (req, res) => {
+  // Consultado todos los proyectos
+  const projects = await ProjectModel.find({}).lean().exec();
+  // Enviando los proyectos al cliente en JSON
+  log.info('Se entrega dashboard de proyectos');
+  res.render('project/dashboardView', { projects });
 };
 
 // GET "/project/add"
@@ -42,15 +46,18 @@ const addPost = async (req, res) => {
   // Creando la instancia de un documento
   // con los valores de 'project'
   const projectDocument = new ProjectModel(project);
-  try{
+  try {
     // Se salva el documento en la colleción correspondiente
     const savedProject = await projectDocument.save();
-    // Se constesta la información del proyecto al cliente
-    log.info('Se entrega al cliente información del proyecto cargado');
-    return res.status(200).json(savedProject);
-  }catch (error) {
+    // Se informa al cliente que se guardo el proyecto
+    log.info(`Se carga proyecto ${savedProject}`);
+    // Se registra en el log el redireccionamiento
+    log.info('Se redirecciona el sistema a /project');
+    // Se redirecciona el sistema a la ruta '/project'
+    return res.redirect('/project');
+  } catch (error) {
     log.error(
-      'ln 56 project.controller: Error al guardar proyecto en la base de datos',
+      'ln 56 project.controller: Error al guardar libro en la base de datos',
     );
     return res.status(500).json(error);
   }
