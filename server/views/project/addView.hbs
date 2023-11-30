@@ -3,13 +3,42 @@
         <div class="card">
             <div class="card-image">
                 <img src="/img/addproject.png" alt="Imagen creacion de proyecto">
-                <span 
-                class="card-title add-project"
-                style="font-weight: bolder;">
-                Crear Proyecto
+                <span class="card-title add-project" style="font-weight: bolder;">
+                    Crear Proyecto
                 </span>
             </div>
-            <form autocomplete="off" action="/project/add" method="post"></form>
+            <form autocomplete="off" action="/project/add" method="post">
+                <div class="card-content">
+                    <div class="input-field">
+                        <label for="project-name">
+                            Nombre del proyecto
+                        </label>
+                        <input 
+                        type="text" 
+                        id="project-name" 
+                        name="name" 
+                        required
+                        placeholder="Nombre del proyecto"
+                        class="validate">
+                    </div>
+                    <div class="input-field">
+                        <label for="project-description">
+                            Descripción del proyecto
+                        </label>
+                        <textarea 
+                        name="description" 
+                        required
+                        id="project-description" 
+                        class="materialize-textarea"
+                        placeholder="Ingresa descripción del proyecto"></textarea>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <button class="blue darken-3 waves-effect waves-light btn">
+                        <i class="material-icons left">note_add</i> Agregar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
