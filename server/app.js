@@ -25,6 +25,7 @@ import log from './config/winston';
 
 // Importando enrutador
 import router from './router';
+import logger from './config/winston';
 
 // Creando variable del directorio raiz
 // eslint-disable-next-line
