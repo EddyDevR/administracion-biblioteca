@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
+import uniqueValidator from 'mongoose-unique-validator';
 // 2. Desestructurando la fn Schema
 const { Schema } = mongoose;
 // 3. Creando el esquema
@@ -61,7 +62,23 @@ UserSchema.methods = {
   generateConfirmationToken() {
     return crypto.randomBytes(64).toString('hex');
   },
+  // Funcion de tranformacion a Json personalizada
+  toJSON() {
+    return {
+      id: this._id,
+      firstName: this.firstName,
+      lastname: this.lastname,
+      mail: this.mail,
+      emailConfirmationToken: this.emailConfirmationToken,
+      emailConfirmationAt: this.emailConfirmationAt,
+      createdAt: this.createdAt,
+      updatedAt: this.updatedAt,
+    };
+  },
 };
+
+// Adding Plugins to Schema
+UserSchema.plugin(uniqueValidator);
 
 // Hooks
 UserSchema.pre('save', function presave(next) {
