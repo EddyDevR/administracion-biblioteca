@@ -17,7 +17,7 @@ const router = new Router();
 router.get('/', projectController.showDashboard);
 
 // GET "/project/add"
-router.get('/add', projectController.add);
+router.get('/add', projectController.addForm);
 
 // POST "/project/add"
 router.post(

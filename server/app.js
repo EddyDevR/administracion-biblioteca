@@ -21,6 +21,9 @@ import WebpackHotMiddleware from 'webpack-hot-middleware';
 // Importing webpack configuration
 import webpackConfig from '../webpack.dev.config';
 
+// Importando configurador de sesiones
+import configSession from './config/configSessions';
+
 // Impornting winston logger
 import log from './config/winston';
 
@@ -83,6 +86,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 // Enable post and delete verbs
 app.use(methodOverride('_method'));
+// Habilitando manejo de sesiones y mensajes flash
+configSession(app);
 
 // Registering routes
 router.addRoutes(app);

@@ -7,6 +7,7 @@
 // Module that allows to communicate with a client
 // usign HTTP protocol
 import http from 'http';
+import app from '../app';
 
 // Impornting winston logger
 import log from '../config/winston';
@@ -14,8 +15,8 @@ import log from '../config/winston';
 // Importing config Keys
 import configKeys from '../config/configKeys';
 
-// Importing ODM
-import MongooseOdm from '../services/odm';
+// Importing db connection function
+import connectWithRetry from '../database/mongooseConnection';
 
 // Normalize a port into a number, string, or false.
 function normalizePort(val) {
@@ -35,7 +36,8 @@ function normalizePort(val) {
 }
 
 // Get port from environment and store in Express.
-const port = normalizePort(configKeys.port);
+const port = normalizePort(configKeys.PORT);
+app.set('port', port);
 
 // Event listener for HTTP server "error" event.
 function onError(error) {
@@ -58,48 +60,21 @@ function onError(error) {
   }
 }
 
-// Rutina de arranque del servidor
-function startServer(dbConnection) {
-  import('../app').then((module) => {
-    // Importa el modulo por defecto
-    const app = module.default;
-    // Store the port info in the app
-    app.set('port', port);
+const server = http.createServer(app); // (req, res)=>{...}
 
-    // Create HTTP server.
-    log.info('The server is created from the express instance');
-    const server = http.createServer(app); // (req, res) => { acciones }
-
-    // Event listener for HTTP server "listening" event.
-    function onListening() {
-      const addr = server.address();
-      log.info(`⭐⭐ Listening on ${process.env.APP_URL}:${addr.port} ⭐⭐`);
-    }
-
-    // Attaching Callbacks to events
-    server.on('error', onError);
-    server.on('listening', onListening);
-    // Store the dbConnection in the app
-    app.set('dbConnection', dbConnection);
-    // Starting Server
-    server.listen(port);
-  });
+function onListening() {
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  log.info(`📢 Listening on ${bind}`);
 }
 
-// IIFE
-(async () => {
-  // Creando la instancia del ODM
-  const mongooseOdm = new MongooseOdm(configKeys.mongoUrl);
-  // Conectando a la base de datos
-  try {
-    const dbConnection = await mongooseOdm.connect();
-    if (dbConnection) {
-      log.info(
-        `🛢️ Conexión exitosa a la base de datos: ${configKeys.mongoUrl} 🛢️`,
-      );
-      startServer(dbConnection);
-    }
-  } catch (error) {
-    log.error(`Error www.js ln 103: ${error.message}`);
-  }
-})();
+// Launching db connection
+connectWithRetry(configKeys.MONGO_URL);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError); // callback
+server.on('listening', onListening);

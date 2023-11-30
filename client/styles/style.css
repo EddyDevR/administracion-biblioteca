@@ -17,3 +17,10 @@ h1{
   text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
   font-size: 24px;
 }
+
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 70%;
+  left:40%;
+}
