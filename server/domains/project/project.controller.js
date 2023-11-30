@@ -39,7 +39,7 @@ const addPost = (req, res) => {
   // Se contesta la información
   // del proyecto al cliente
   log.info('Se entrega al cliente información del proyecto cargado');
-  res.status(200).json(project);
+  return res.status(200).json(project);
 };
 
 // Controlador user

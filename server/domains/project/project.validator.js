@@ -3,10 +3,10 @@ import * as Yup from 'yup';
 
 // Creando un esquema de validación para el proyecto
 const projectSchema = Yup.object().shape({
-  name: Yup.string().required('Se requiere un nombre de un libro'),
+  name: Yup.string().required('Se requiere un nombre de proyecto'),
   description: Yup.string()
     .max(500, 'No escribir mas de 500 caracteres')
-    .required('Se requiere una descripción de un libro'),
+    .required('Se requiere una descripción del proyecto'),
 });
 
 // Middleware de extracción
