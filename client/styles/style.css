@@ -1,19 +1,19 @@
-body {
+body{
   padding: 50px;
   font-size: 14px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+a{
   color: #00B7FF;
 }
 
-h1 {
+h1{
   color: teal;
 }
 
 .card-title.add-project {
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  font: 24px;
+  color: #FFF; 
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
+  font-size: 24px;
 }

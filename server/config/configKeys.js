@@ -1,46 +1,18 @@
-// Importando el DotEnv
+// Importando el paquete Dotenv
 import dotenv from 'dotenv';
 
-// Invocación a la función config de la instancia dotenv
+// Con esta función se cargan las variables
+// de entorno, un aspecto importante es que en
+// caso de no existir el archivo ".env" esta
+// carga falla de manera silenciosa
 dotenv.config();
 
-console.log(process.env.PORT);
-
-// Creando objetos de configuración
-const defaultConfig = {
-  PORT: process.env.PORT || 3000,
-  IP: process.env.IP || '0.0.0.0',
-};
-
-const devConfig = {
-  MONGO_URL: process.env.DEV_DATABASE_URL,
-};
-
-const testConfig = {
-  TEST_VALUE: 200,
-};
-
-const prodConfig = {
-  MONGO_URL: process.env.PROD_DATABASE_URL,
-};
-
-// Creando una función selectora
-function getEnvConfig(env) {
-  switch (env) {
-    case 'production':
-      return prodConfig;
-    case 'development':
-      return devConfig;
-    case 'test':
-      return testConfig;
-    default:
-      break;
-  }
-  return {};
-}
-
-// Exportar el objeto de configuración
+// Crearemos un objeto que contendra
+// las llaves de configuración
 export default {
-  ...defaultConfig,
-  ...getEnvConfig(process.env.NODE_ENV),
+  appVersion: process.env.APP_VERSION,
+  homeUrl: `${process.env.APP_URL}:${process.env.PORT}`,
+  port: process.env.PORT || '3000',
+  ip: process.env.IP,
+  mongoUrl: process.env.DEV_DATABASE_URL,
 };

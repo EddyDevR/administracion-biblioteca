@@ -1,28 +1,30 @@
 // Actions methods
-
-// GET /project/projects
-//  GET /project/dashboard
-
+// GET "/project"
 const showDashboard = (req, res) => {
-  res.send("🚧 UNDER CONSTRUCTION '/project/projects' '/project/dashboar'  🚧");
+  res.send('⚠️ UNDER CONSTRUCTION: GET /project ⚠️');
 };
 
-// GET /project/add-form
-// GET /project/add
-
-const addForm = (req, res) => {
+// GET "/project/add"
+const add = (req, res) => {
   res.render('project/addView');
 };
 
-// GET /project/about
-
-const about = (req, res) => {
-  res.render('home/aboutView', { appVersion: '1.0.0' });
+// POST "/project/add"
+const addPost = (req, res) => {
+  // Extrayendo la informacion
+  // del formulario
+  const { name, description } = req.body;
+  // Regresando al cliente la información recabada
+  res.status(200).json({
+    name,
+    description,
+  });
 };
 
-// Controlador Home
+// Controlador user
 export default {
+  // Action Methods
   showDashboard,
-  addForm,
-  about,
+  add,
+  addPost,
 };
