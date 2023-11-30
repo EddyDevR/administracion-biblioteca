@@ -17,5 +17,8 @@ router.get('/logout', userController.logout);
 // GET '/user/register'
 router.get('/register', userController.register);
 
+// POST '/user/register'
+router.post('/register', userController.registerPost);
+
 // Exporto este tramo de ruta
 export default router;
