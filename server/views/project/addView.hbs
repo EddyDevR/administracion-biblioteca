@@ -2,46 +2,106 @@
   <div class="col s12 m10 offset-m1 l8 offset-l2">
     <div class="card">
       <div class="card-image">
-        <img src="/img/addproject.png" alt="">
+        <img src="/img/addproject.jpeg" alt="">
         <span class="card-title add-project" style="font-weight: bolder;">
-          Crear proyecto
+          Registrar Libro
         </span>
       </div>
-      <form autocomplete='off' action="/project/edit/{{ project._id }}" method="put">
+      <form autocomplete='off' action="/project/add/{{ libros._id }}" method="post">
         <div class="card-content">
           <div class='input-field'>
-            <label for='project-name'>Nombre de tu idea de proyecto</label>
+            <label for='project-name'>Titulo de libro</label>
             <input 
-            placeholder='El nombre del proyecto aqui' 
+            placeholder='El titulo de libro aqui' 
             id='project-name' 
             name='name' 
             type='text' 
             class="validate"
-            value="{{project.name}}"
+            value="{{libros.titulo}}"
             required 
             />
             <span
             class="helper-text"
-            data-error="👆 Es necesario ingresar el nombre del proyecto 👆"
+            data-error="Es necesario ingresar el titulo de libro 👆"
             data-success="✅ Correcto"></span>
             {{#if errorModel.name}}
             <span style="color:crimson">Error: {{errorModel.name }}</span>
             {{/if}}
           </div>
           <div class='input-field'>
-            <label for='project-description'>
-              Descripción del proyecto
-            </label>
-            <textarea 
-            id='project-description' 
-            name='description' 
-            class="materialize-textarea validate" required>{{project.description}}</textarea>
-            <span 
+            <label for='project-name'>Autor</label>
+            <input 
+            placeholder='El autor aqui' 
+            id='project-name' 
+            name='name' 
+            type='text' 
+            class="validate"
+            value="{{libros.autor}}"
+            required 
+            />
+            <span
             class="helper-text"
-            data-error="👆 Debe ingresar una descripción 👆"
+            data-error="Es necesario ingresar el autor 👆"
             data-success="✅ Correcto"></span>
-            {{#if errorModel.description }}
-            <span style="color: crimson;">Error: {{ errorModel.description }}</span>
+            {{#if errorModel.name}}
+            <span style="color:crimson">Error: {{errorModel.name }}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>Categoría</label>
+            <input 
+            placeholder='Categoría aqui' 
+            id='project-name' 
+            name='name' 
+            type='text' 
+            class="validate"
+            value="{{libros.categoria}}"
+            required 
+            />
+            <span
+            class="helper-text"
+            data-error="Es necesario ingresar la categoría 👆"
+            data-success="✅ Correcto"></span>
+            {{#if errorModel.name}}
+            <span style="color:crimson">Error: {{errorModel.name }}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>ISBN</label>
+            <input 
+            placeholder='El ISBN aqui' 
+            id='project-name' 
+            name='name' 
+            type='text' 
+            class="validate"
+            value="{{libros.isbn}}"
+            required 
+            />
+            <span
+            class="helper-text"
+            data-error="Es necesario ingresar el ISBN👆"
+            data-success="✅ Correcto"></span>
+            {{#if errorModel.name}}
+            <span style="color:crimson">Error: {{errorModel.name }}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>Copias disponibles</label>
+            <input 
+            placeholder='Copias disponibles aqui' 
+            id='project-name' 
+            name='name' 
+            type='text' 
+            class="validate"
+            value="{{libros.copias_disponibles}}"
+            required 
+            />
+            <span
+            class="helper-text"
+            data-error="Es necesario ingresar copias disponibles 👆"
+            data-success="✅ Correcto"></span>
+            {{#if errorModel.name}}
+            <span style="color:crimson">Error: {{errorModel.name }}</span>
             {{/if}}
           </div>
         </div>
