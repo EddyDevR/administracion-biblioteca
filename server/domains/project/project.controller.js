@@ -11,8 +11,6 @@ const addForm = (req, res) => {
   res.render('project/addView');
 };
 
-log.info(ProjectModel);
-
 // GET '/project/showDashboard'
 // GET '/project/projects'
 // GET '/project'
@@ -48,10 +46,10 @@ const addPost = async (req, res) => {
   // En caso de que pase la validación
   // Se desestructura la información
   // de la peticion
-  const { validData: project } = req;
+  const { validData: libro } = req;
   try {
     // Creando la instancia de un documento con los valores de 'project'
-    const savedProject = await ProjectModel.create(project);
+    const savedProject = await ProjectModel.create(libro);
     // Se informa al cliente que se guardo el proyecto
     log.info(`Se carga proyecto ${savedProject}`);
     // Se registra en el log el redireccionamiento

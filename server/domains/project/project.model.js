@@ -29,4 +29,4 @@ const ProjectSchema = new Schema({
 
 // Exportando la compilacon de ProjectSchema
 // en un modelo de mongoose
-export default mongoose.model('project', ProjectSchema);
+export default mongoose.model('libros', ProjectSchema);
