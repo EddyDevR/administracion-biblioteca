@@ -153,9 +153,10 @@ const deleteProject = async (req, res) => {
 };
 
 const showBooks = async (req, res) => {
-  const projects = await ProjectModel.find({}).lean().exec();
+  const { autor } = req.query;
+  const libros = await ProjectModel.find({ autor: autor }).select('titulo autor categoria isbn copias_disponibles').lean().exec();
   // Se entrega la vista dashboardView con el viewmodel projects
-  res.render('project/showBooks', { projects });
+  res.render('project/showBooks', { projects: libros });
 };
 
 export default {
