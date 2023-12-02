@@ -30,6 +30,9 @@ router.post(
   projectController.addPost,
 );
 
+// GET /project/author
+router.get('/showBooks', projectController.showBooks);
+
 // GET "/project/edit/:id"
 router.get('/edit/:id', projectController.edit);
 
