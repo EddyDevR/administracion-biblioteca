@@ -10,11 +10,11 @@
       <form autocomplete='off' action="/project/add/{{ libros._id }}" method="post">
         <div class="card-content">
           <div class='input-field'>
-            <label for='project-name'>Titulo de libro</label>
+            <label for='titulo'>Titulo de libro</label>
             <input 
             placeholder='El titulo de libro aqui' 
-            id='project-name' 
-            name='name' 
+            id='titulo' 
+            name='titulo' 
             type='text' 
             class="validate"
             value="{{libros.titulo}}"
@@ -29,11 +29,11 @@
             {{/if}}
           </div>
           <div class='input-field'>
-            <label for='project-name'>Autor</label>
+            <label for='autor'>Autor</label>
             <input 
             placeholder='El autor aqui' 
-            id='project-name' 
-            name='name' 
+            id='autor' 
+            name='autor' 
             type='text' 
             class="validate"
             value="{{libros.autor}}"
@@ -48,11 +48,11 @@
             {{/if}}
           </div>
           <div class='input-field'>
-            <label for='project-name'>Categoría</label>
+            <label for='categoria'>Categoría</label>
             <input 
             placeholder='Categoría aqui' 
-            id='project-name' 
-            name='name' 
+            id='categoria' 
+            name='categoria' 
             type='text' 
             class="validate"
             value="{{libros.categoria}}"
@@ -67,11 +67,11 @@
             {{/if}}
           </div>
           <div class='input-field'>
-            <label for='project-name'>ISBN</label>
+            <label for='isbn'>ISBN</label>
             <input 
             placeholder='El ISBN aqui' 
-            id='project-name' 
-            name='name' 
+            id='isbn' 
+            name='isbn' 
             type='text' 
             class="validate"
             value="{{libros.isbn}}"
@@ -86,11 +86,11 @@
             {{/if}}
           </div>
           <div class='input-field'>
-            <label for='project-name'>Copias disponibles</label>
+            <label for='copias_disponibles'>Copias disponibles</label>
             <input 
             placeholder='Copias disponibles aqui' 
-            id='project-name' 
-            name='name' 
+            id='copias_disponibles' 
+            name='copias_disponibles' 
             type='text' 
             class="validate"
             value="{{libros.copias_disponibles}}"

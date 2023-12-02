@@ -3,21 +3,25 @@ import * as Yup from 'yup';
 
 // Creando un esquema de validación para el proyecto
 const projectSchema = Yup.object().shape({
-  name: Yup.string().required('Se requiere un nombre de proyecto'),
-  description: Yup.string()
-    .max(500, 'No escribir mas de 500 caracteres')
-    .required('Se requiere una descripción del proyecto'),
+  titulo: Yup.string().required('Se requiere un titulo'),
+  autor: Yup.string().required('Se requiere un autor'),
+  categoria: Yup.string().required('Se requiere una categoria'),
+  isbn: Yup.string().required('Se requiere un ISBN'),
+  copias_disponibles: Yup.string().required('Se requiere copias disponibles'),
 });
 
 // Middleware de extracción
 // Creando el extractor de datos de la petición
 const getProject = (req) => {
   // Extrayendo datos de la petición
-  const { name, description } = req.body;
+  const { titulo, autor, categoria, isbn, copias_disponibles } = req.body;
   // Regresando el objeto proyecto
   return {
-    name,
-    description,
+    titulo,
+    autor,
+    categoria,
+    isbn,
+    copias_disponibles,
   };
 };
 

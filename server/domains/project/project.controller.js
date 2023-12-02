@@ -11,6 +11,8 @@ const addForm = (req, res) => {
   res.render('project/addView');
 };
 
+log.info(ProjectModel);
+
 // GET '/project/showDashboard'
 // GET '/project/projects'
 // GET '/project'
@@ -28,6 +30,7 @@ const addPost = async (req, res) => {
   // En caso de haber error
   // se le informa al cliente
   if (validationError) {
+    console.log(validationError);
     log.info('Se entrega al cliente error de validación de add Book');
     // Se desestructuran los datos de validación
     // y se renombran de  "value" a "project"
@@ -119,8 +122,11 @@ const editPut = async (req, res) => {
   }
   // En caso de encontrarse el documento se actualizan los datos
   const { validData: newProject } = req;
-  project.name = newProject.name;
-  project.description = newProject.description;
+  project.titulo = newProject.titulo;
+  project.autor = newProject.autor;
+  project.categoria = newProject.categoria;
+  project.isbn = newProject.isbn;
+  project.copias_disponibles = newProject.copias_disponibles;
   try {
     // Se salvan los cambios
     log.info(`Actualizando libro con id: ${id}`);
