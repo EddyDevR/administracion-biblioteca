@@ -153,7 +153,6 @@ const deleteProject = async (req, res) => {
 };
 
 const showBooks = async (req, res) => {
-  // Consultado todos los proyectos
   const projects = await ProjectModel.find({}).lean().exec();
   // Se entrega la vista dashboardView con el viewmodel projects
   res.render('project/showBooks', { projects });
