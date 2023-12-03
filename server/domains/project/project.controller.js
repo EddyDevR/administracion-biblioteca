@@ -21,6 +21,13 @@ const showDashboard = async (req, res) => {
   res.render('project/dashboardView', { projects });
 };
 
+const lendBooks = async (req, res) => {
+  // Consultado todos los proyectos
+  const projects = await ProjectModel.find({}).lean().exec();
+  // Se entrega la vista dashboardView con el viewmodel projects
+  res.render('project/lendBooks', { projects });
+};
+
 // POST "/project/add"
 const addPost = async (req, res) => {
   // Rescatando la info del formulario
@@ -125,6 +132,7 @@ const editPut = async (req, res) => {
   project.categoria = newProject.categoria;
   project.isbn = newProject.isbn;
   project.copias_disponibles = newProject.copias_disponibles;
+  project.estado = newProject.estado;
   try {
     // Se salvan los cambios
     log.info(`Actualizando libro con id: ${id}`);
@@ -167,4 +175,5 @@ export default {
   editPut,
   deleteProject,
   showBooks,
+  lendBooks,
 };

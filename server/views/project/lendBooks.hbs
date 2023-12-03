@@ -1,0 +1,22 @@
+<h1>Prestamos y Devoluciones</h1>
+<div class="row">
+    {{#each projects}}
+    <div class="col s12">
+        <div class="card teal darken-4">
+            <div class="card-content teal-text text-lighten-5">
+                <h1>Titulo: {{titulo}}</h1>
+                <h5>Autor: {{autor}}</h5>
+                <h5>Categoria: {{categoria}}</h5>
+                <h5>ISBN: {{isbn}}</h5>
+                <h5>Copias disponibles: {{copias_disponibles}}</h5>
+                <h5>Estado: {{estado}}</h5>
+            </div>
+            <div class="card-action">
+
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <p>No hay libros que listar.</p>
+    {{/each}}
+</div>

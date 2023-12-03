@@ -14,7 +14,7 @@ const projectSchema = Yup.object().shape({
 // Creando el extractor de datos de la petición
 const getProject = (req) => {
   // Extrayendo datos de la petición
-  const { titulo, autor, categoria, isbn, copias_disponibles } = req.body;
+  const { titulo, autor, categoria, isbn, copias_disponibles, estado} = req.body;
   // Regresando el objeto proyecto
   return {
     titulo,
@@ -22,6 +22,7 @@ const getProject = (req) => {
     categoria,
     isbn,
     copias_disponibles,
+    estado,
   };
 };
 

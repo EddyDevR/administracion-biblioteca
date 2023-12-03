@@ -20,6 +20,9 @@ router.get(['/showDashboard', '/projects'], projectController.showDashboard);
 // GET "/project/add"
 router.get('/add', projectController.addForm);
 
+// GET "/project/lendBooks"
+router.get('/lendBooks', projectController.lendBooks);
+
 // POST "/project/add"
 router.post(
   '/add',
