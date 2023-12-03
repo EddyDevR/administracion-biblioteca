@@ -36,6 +36,9 @@ router.get('/showUsers', userController.showUsers);
 // GET "/user/edit/:id"
 router.get('/editUser/:id', userController.editUser);
 
+// GET "/user/account"
+router.get('/account', userController.account);
+
 // PUT "/user/edit/:id"
 router.put(
   '/editUser/:id',
