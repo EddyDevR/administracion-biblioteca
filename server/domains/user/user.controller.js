@@ -143,6 +143,10 @@ const showUsers = async (req, res) => {
   res.render('user/showUsers', { users: usuarios });
 };
 
+const account = (req, res) => {
+  res.render('user/account');
+};
+
 // Controlador user
 export default {
   // Action Methods
@@ -154,4 +158,5 @@ export default {
   editPutUser,
   deleteUser,
   showUsers,
+  account,
 };
