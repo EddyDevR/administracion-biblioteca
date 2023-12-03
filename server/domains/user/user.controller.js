@@ -35,7 +35,7 @@ const registerPost = async (req, res) => {
     const user = await User.create(userFormData);
     log.info(`Usuario creado: ${JSON.stringify(user)}`);
     // 3. Se contesta al cliente con el usuario creado
-    return res.status(200).json(user.toJSON());
+    return res.render('user/register');
   } catch (error) {
     log.error(error.message);
     return res.json({
