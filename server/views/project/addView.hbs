@@ -105,30 +105,6 @@
             {{/if}}
           </div>
 
-          <div class='input-field'>
-            <label for='estado'>Estado</label>
-            <input 
-            placeholder='Estado de Libro aqui' 
-            id='estado' 
-            name='estado' 
-            type='text' 
-            class="validate"
-            value="{{libros.estado}}"
-            required 
-            />
-            <span
-            class="helper-text"
-            data-error="Es necesario ingresar el estado del Libro 👆"
-            data-success="✅ Correcto"></span>
-            {{#if errorModel.name}}
-            <span style="color:crimson">Error: {{errorModel.name }}</span>
-            {{/if}}
-          </div>
-
-
-
-          
-        </div>
 
          
         <div class="card-action">

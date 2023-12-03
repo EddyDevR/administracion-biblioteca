@@ -132,7 +132,6 @@ const editPut = async (req, res) => {
   project.categoria = newProject.categoria;
   project.isbn = newProject.isbn;
   project.copias_disponibles = newProject.copias_disponibles;
-  project.estado = newProject.estado;
   try {
     // Se salvan los cambios
     log.info(`Actualizando libro con id: ${id}`);

@@ -25,10 +25,6 @@ const ProjectSchema = new Schema({
     type: Number,
     required: true,
   },
-  estado: {
-    type: String,
-    required: true,
-  },
 });
 
 // Exportando la compilacon de ProjectSchema
