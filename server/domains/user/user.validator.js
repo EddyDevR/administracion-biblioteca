@@ -2,10 +2,14 @@ import * as Yup from 'yup';
 
 // Crear un esquema de validación
 const signUpSchema = Yup.object().shape({
-  firstName: Yup.string().required('Se requiere ingresar nombre'),
-  lastname: Yup.string().required('Se requiere ingresar apellido'),
-  mail: Yup.string().email().required('Se requiere ingresar un correo valido'),
-  password: Yup.string()
+  nombre: Yup.string().required('Se requiere ingresar nombre'),
+  matricula: Yup.number().required('Se requiere ingresar matricula'),
+  grado: Yup.string().required('Se requiere ingresar semestre'),
+  seccion: Yup.string().required('Se requiere ingresar carrera'),
+  correo: Yup.string()
+    .email()
+    .required('Se requiere ingresar un correo valido'),
+  contrasena: Yup.string()
     .min(6)
     .required('Se requiere ingresar password de al menos 6 caracteres'),
   cpassword: Yup.string().oneOf(
@@ -16,13 +20,16 @@ const signUpSchema = Yup.object().shape({
 
 const signUpGetter = (req) => {
   // Desestructuramos la informacion
-  const { firstName, lastname, mail, password, cpassword } = req.body;
+  const { nombre, matricula, grado, seccion, correo, contrasena, cpassword } =
+    req.body;
   // Se regresa el objeto signup
   return {
-    firstName,
-    lastname,
-    mail,
-    password,
+    nombre,
+    matricula,
+    grado,
+    seccion,
+    correo,
+    contrasena,
     cpassword,
   };
 };

@@ -9,21 +9,23 @@ const { Schema } = mongoose;
 // 3. Creando el esquema
 const UserSchema = new Schema(
   {
-    firstName: { type: String, required: true },
-    lastname: { type: String, required: true },
-    mail: {
+    nombre: { type: String, required: true },
+    matricula: { type: Number, required: true },
+    grado: { type: String, required: true },
+    seccion: { type: String, required: true },
+    correo: {
       type: String,
       unique: true,
       required: [true, 'Es necesario ingresar email'],
       validate: {
-        validator(mail) {
+        validator(correo) {
           // eslint-disable-next-line no-useless-escape
-          return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(mail);
+          return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(correo);
         },
         message: `{VALUE} noes un email valido`,
       },
     },
-    password: {
+    contrasena: {
       type: String,
       required: [true, 'Es necesario ingresar password'],
       trim: true,
@@ -56,7 +58,7 @@ const UserSchema = new Schema(
 UserSchema.methods = {
   // Metodo para encriptar el password
   hashPassword() {
-    return bcrypt.hashSync(this.password, 10);
+    return bcrypt.hashSync(this.contrasena, 10);
   },
   // Genera un token de 64 caracteres aleatorios
   generateConfirmationToken() {
@@ -66,9 +68,11 @@ UserSchema.methods = {
   toJSON() {
     return {
       id: this._id,
-      firstName: this.firstName,
-      lastname: this.lastname,
-      mail: this.mail,
+      nombre: this.nombre,
+      matricula: this.matricula,
+      grado: this.grado,
+      seccion: this.seccion,
+      contrasena: this.contrasena,
       emailConfirmationToken: this.emailConfirmationToken,
       emailConfirmationAt: this.emailConfirmationAt,
       createdAt: this.createdAt,
@@ -83,11 +87,11 @@ UserSchema.plugin(uniqueValidator);
 // Hooks
 UserSchema.pre('save', function presave(next) {
   // Encriptar el password
-  if (this.isModified('password')) {
-    this.password = this.hashPassword();
+  if (this.isModified('contrasena')) {
+    this.contrasena = this.hashPassword();
   }
   return next();
 });
 
 // 4. Compilando el modelo y exportandolo
-export default mongoose.model('user', UserSchema);
+export default mongoose.model('usuarios', UserSchema);
