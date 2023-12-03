@@ -34,14 +34,14 @@ router.post(
 router.get('/showUsers', userController.showUsers);
 
 // GET "/user/edit/:id"
-router.get('/editUsers/:id', userController.editUser);
+router.get('/editUser/:id', userController.editUser);
 
 // PUT "/user/edit/:id"
 router.put(
-  '/editUsers/:id',
+  '/editUser/:id',
   ValidateFactory({
-    schema: userValidator.projectSchema,
-    getObject: userValidator.getProject,
+    schema: userValidator.signUp.schema,
+    getObject: userValidator.signUp.getObject,
   }),
   userController.editPutUser,
 );

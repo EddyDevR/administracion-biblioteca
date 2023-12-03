@@ -72,7 +72,7 @@ const editUser = async (req, res) => {
         .json({ fail: `No se encontro el usuario con el id: ${id}` });
     }
     log.info(`Usuario encontrado con el id: ${id}`);
-    return res.render('user/editUsers', { user });
+    return res.render('user/editUser', { user });
   } catch (error) {
     log.error('Ocurre un error en: metodo "error" de user.controller');
     return res.status(500).json(error);
@@ -98,7 +98,7 @@ const editPutUser = async (req, res) => {
       workingPrev[`${curr.path}`] = curr.message;
       return workingPrev;
     }, {});
-    return res.status(422).render('user/editUsers', { user, errorModel });
+    return res.status(422).render('user/editUser', { user, errorModel });
   }
   // Si no hay error
   const user = await User.findOne({ _id: id });
@@ -122,7 +122,7 @@ const editPutUser = async (req, res) => {
     await user.save();
     // Generando mensaje FLASH
     req.flash('successMessage', 'Libro editado con exito');
-    return res.redirect(`/user/editUsers/${id}`);
+    return res.redirect(`/user/editUser/${id}`);
   } catch (error) {
     log.error(`Error al actualizar libro con id: ${id}`);
     return res.status(500).json(error);
