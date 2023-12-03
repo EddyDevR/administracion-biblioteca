@@ -46,8 +46,8 @@ router.put(
   userController.editPutUser,
 );
 
-// DELETE "/project/:id"
-router.delete('/:id', userController.deleteU);
+// DELETE "/user:id"
+router.delete('/:id', userController.deleteUser);
 
 // Exporto este tramo de ruta
 export default router;

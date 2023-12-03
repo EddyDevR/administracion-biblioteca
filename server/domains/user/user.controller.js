@@ -120,7 +120,7 @@ const editPutUser = async (req, res) => {
 };
 
 // DELETE "/user/:id"
-const deleteU = async (req, res) => {
+const deleteUser = async (req, res) => {
   const { id } = req.params;
   // Usando el modelo para borrar el proyecto
   try {
@@ -139,7 +139,7 @@ const showUsers = async (req, res) => {
     .select('nombre matricula grado seccion correo')
     .lean()
     .exec();
-  // Se entrega la vista dashboardView con el viewmodel projects
+  // Se entrega la vista dashboardView con el viewmodel user
   res.render('user/showUsers', { users: usuarios });
 };
 
@@ -152,6 +152,6 @@ export default {
   registerPost,
   editUser,
   editPutUser,
-  deleteU,
+  deleteUser,
   showUsers,
 };
