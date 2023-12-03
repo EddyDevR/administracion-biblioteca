@@ -1,0 +1,36 @@
+<h1>Buscar Usuarios</h1>
+
+<form action="/user/showUsers" method="GET" class="row">
+  <div class="input-field col s8">
+    <input type="search" name="nombre" id="nombre" placeholder="Buscar Usuario">
+    <label for="nombre">Buscar Usuario</label>
+  </div>
+  <div class="input-field col s4">
+    <button type="submit" class="btn waves-effect waves-light">Buscar Usuario</button>
+  </div>
+</form>
+
+<!-- Resto de tu código HTML -->
+
+
+<div class="row">
+  {{#each users}}
+  <div class="col s12">
+    <div class="card teal darken-4">
+      <div class="card-content teal-text text-lighten-5">
+        <h1>Nombre: {{nombre}}</h1>
+        <h5>ID: {{_id}}</h5>
+        <h5>Matricula: {{matricula}}</h5>
+        <h5>Grado: {{grado}}</h5>
+        <h5>Seccion: {{seccion}}</h5>
+        <h5>Correo: {{correo}}</h5>
+      </div>
+      <div class="card-action">
+
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <p>No hay usuarios por mostrar.</p>
+  {{/each}}
+</div>

@@ -46,6 +46,16 @@ const registerPost = async (req, res) => {
   }
 };
 
+const showUsers = async (req, res) => {
+  const { nombre } = req.query;
+  const usuarios = await User.find({ nombre: nombre })
+    .select('nombre matricula grado seccion correo')
+    .lean()
+    .exec();
+  // Se entrega la vista dashboardView con el viewmodel projects
+  res.render('user/showUsers', { users: usuarios });
+};
+
 // Controlador user
 export default {
   // Action Methods
@@ -53,4 +63,5 @@ export default {
   logout,
   register,
   registerPost,
+  showUsers,
 };

@@ -30,5 +30,8 @@ router.post(
   userController.registerPost,
 );
 
+// GET /project/author
+router.get('/showUsers', userController.showUsers);
+
 // Exporto este tramo de ruta
 export default router;
