@@ -4,11 +4,11 @@ import { Router } from 'express';
 // Importando el controlador
 import userController from './user.controller';
 
-// Importando el validador del usuario
-import userValidator from './user.validator';
-
 // Importando el factory de validación
 import ValidateFactory from '../../services/validateFactory';
+
+// Importando el validador del usuario
+import userValidator from './user.validator';
 
 // Creando una isntancia del enrutador
 const router = new Router();
@@ -30,8 +30,21 @@ router.post(
   userController.registerPost,
 );
 
-// GET /project/author
+// GET /user/author
 router.get('/showUsers', userController.showUsers);
+
+// GET "/user/edit/:id"
+router.get('/editUsers/:id', userController.editUser);
+
+// PUT "/user/edit/:id"
+router.put(
+  '/editUsers/:id',
+  ValidateFactory({
+    schema: userValidator.projectSchema,
+    getObject: userValidator.getProject,
+  }),
+  userController.editPutUser,
+);
 
 // Exporto este tramo de ruta
 export default router;

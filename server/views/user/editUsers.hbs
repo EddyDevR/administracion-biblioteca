@@ -1,0 +1,91 @@
+<div class='row'>
+  <div class='col s12 m10 offset-m1 18 offset-12'>
+    <div class='card'>
+      <div class='card-image'>
+        <img src='/img/editUser.png' alt='Imagen editar usuario' style='width: 300px; height: 250px; margin: auto;' />
+        <span class='card-title add-user' style='font-weight: bolder; color:crimson;'>
+          Editar datos de usuario
+        </span>
+      </div>
+      <form autocomplete="off" action="/user/editUser/{{ user._id }}?_method=put" method="post">
+        <div class='card-content'>
+          <div class='input-field'>
+            <label for='nombre'>
+              Nombre usuario
+            </label>
+            <input type='text' id='nombre' name='nombre' placeholder='Ingrese nombre de usuario' class='validate'
+              value='{{usuarios.nombre}}' required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar el nombre' data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='matricula'>
+              Matricula
+            </label>
+            <input type='text' id='matricula' name='matricula' placeholder='Ingrese matricula' class='validate'
+              value='{{usuarios.matricula}}' required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar matricula' data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='grado'>
+              Semestre
+            </label>
+            <input type='text' id='grado' name='grado' placeholder='Ingrese el semestre' class='validate'
+              value='{{usuarios.grado}}' required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar semestre' data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='seccion'>
+              Carrera
+            </label>
+            <input type='text' id='seccion' name='seccion' placeholder='Ingrese la carrera' class='validate' value='{{usuarios.seccion}}'
+              required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar la carrera' data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='correo'>
+              Correo
+            </label>
+            <input type='text' id='correo' name='correo'
+              placeholder='Ingrese el correo' class='validate' value='{{usuarios.correo}}'
+              required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar correo'
+              data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='contrasena'>
+              Contraseña
+            </label>
+            <input type='text' id='contrasena' name='contrasena'
+              placeholder='Ingrese contraseña' class='validate' value='{{usuarios.contrasena}}'
+              required />
+            <span class='helper-text' data-error='👆 Es necesario ingresar la contraseña'
+              data-success='✅ Correcto'></span>
+            {{#if errorModel.name}}
+            <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='card-action'>
+            <button class='blue darken-3 waves-effect waves-light btn'>
+              <i class='material-icons left'>edit</i>
+              Editar
+            </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

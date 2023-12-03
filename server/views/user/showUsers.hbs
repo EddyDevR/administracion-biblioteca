@@ -16,18 +16,27 @@
 <div class="row">
   {{#each users}}
   <div class="col s12">
-    <div class="card teal darken-4">
+    <div class="card grey darken-3">
       <div class="card-content teal-text text-lighten-5">
         <h1>Nombre: {{nombre}}</h1>
-        <h5>ID: {{_id}}</h5>
         <h5>Matricula: {{matricula}}</h5>
         <h5>Grado: {{grado}}</h5>
         <h5>Seccion: {{seccion}}</h5>
         <h5>Correo: {{correo}}</h5>
       </div>
       <div class="card-action">
-
-      </div>
+          <a href="/user/editUser/{{_id}}">
+            <i class="material-icons" 
+              style = "display: inline-flex; vertical-align: sub;">edit</i>
+            <span >Editar usuario</span>
+          </a>
+          <a href="javascript: deleteUser('{{_id}}')" class="inline">
+            <i class="material-icons" 
+	            style = "display: inline-flex; vertical-align: sub;">
+	            delete</i>
+            Eliminar usuario
+          </a>
+        </div>
     </div>
   </div>
   {{else}}
