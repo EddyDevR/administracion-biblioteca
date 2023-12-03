@@ -10,9 +10,6 @@
   </div>
 </form>
 
-<!-- Resto de tu código HTML -->
-
-
 <div class="row">
   {{#each users}}
   <div class="col s12">
@@ -30,13 +27,13 @@
               style = "display: inline-flex; vertical-align: sub;">edit</i>
             <span >Editar usuario</span>
           </a>
-          <a href="javascript: deleteUser('{{_id}}')" class="inline">
+          <a href="javascript: deleteU('{{_id}}')" class="inline">
             <i class="material-icons" 
 	            style = "display: inline-flex; vertical-align: sub;">
 	            delete</i>
             Eliminar usuario
           </a>
-        </div>
+      </div>
     </div>
   </div>
   {{else}}

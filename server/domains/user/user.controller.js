@@ -46,16 +46,6 @@ const registerPost = async (req, res) => {
   }
 };
 
-const showUsers = async (req, res) => {
-  const { nombre } = req.query;
-  const usuarios = await User.find({ nombre: nombre })
-    .select('nombre matricula grado seccion correo')
-    .lean()
-    .exec();
-  // Se entrega la vista dashboardView con el viewmodel projects
-  res.render('user/showUsers', { users: usuarios });
-};
-
 // GET "/user/edit/:id"
 const editUser = async (req, res) => {
   // Se extrae el id de los parámetros
@@ -129,6 +119,30 @@ const editPutUser = async (req, res) => {
   }
 };
 
+// DELETE "/user/:id"
+const deleteU = async (req, res) => {
+  const { id } = req.params;
+  // Usando el modelo para borrar el proyecto
+  try {
+    const user = await User.findByIdAndRemove(id);
+    // Agregando mensaje de flash
+    req.flash('successMessage', 'Usuario borrado con exito');
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+
+const showUsers = async (req, res) => {
+  const { nombre } = req.query;
+  const usuarios = await User.find({ nombre: nombre })
+    .select('nombre matricula grado seccion correo')
+    .lean()
+    .exec();
+  // Se entrega la vista dashboardView con el viewmodel projects
+  res.render('user/showUsers', { users: usuarios });
+};
+
 // Controlador user
 export default {
   // Action Methods
@@ -136,7 +150,8 @@ export default {
   logout,
   register,
   registerPost,
-  showUsers,
   editUser,
   editPutUser,
+  deleteU,
+  showUsers,
 };
