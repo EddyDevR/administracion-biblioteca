@@ -126,7 +126,7 @@ const addPost = async (req, res) => {
     // Se registra en el log el redireccionamiento
     log.info('Se redirecciona el sistema a /project');
     // Agregando mensaje de flash
-    req.flash('successMessage', 'Proyecto agregado con exito');
+    req.flash('successMessage', 'Libro agregado con exito');
     // Se redirecciona el sistema a la ruta '/project'
     return res.redirect('/project/showDashboard');
   } catch (error) {
@@ -147,12 +147,12 @@ const edit = async (req, res) => {
     // Se busca el proyecto en la base de datos
     const project = await ProjectModel.findOne({ _id: id }).lean().exec();
     if (project === null) {
-      log.info(`No se encontro el proyecto con el id: ${id} `);
+      log.info(`No se encontro el libro con el id: ${id} `);
       return res
         .status(404)
-        .json({ fail: `No se encontro el proyecto con el id: ${id} ` });
+        .json({ fail: `No se encontro el libro con el id: ${id} ` });
     }
-    log.info(`Proyecto encontrado con el id: ${id} `);
+    log.info(`Libro encontrado con el id: ${id} `);
     return res.render('project/editView', { project });
   } catch (error) {
     log.error('Ocurre un error en: metodo "error" de project.controller');
