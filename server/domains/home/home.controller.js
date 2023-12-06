@@ -9,7 +9,7 @@ const home = (req, res) => {
 
 // GET "/about"
 const about = (req, res) => {
-  res.render('home/aboutView', { appVersion: '1.0.0' });
+  res.render('home/aboutView', { appVersion: '2.0.0' });
 };
 
 // Controlador Home
