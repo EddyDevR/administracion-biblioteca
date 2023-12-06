@@ -134,8 +134,8 @@ const deleteUser = async (req, res) => {
 };
 
 const showUsers = async (req, res) => {
-  const { nombre } = req.query;
-  const usuarios = await User.find({ nombre: nombre })
+  const { matricula } = req.query;
+  const usuarios = await User.find({ matricula: matricula })
     .select('nombre matricula grado seccion correo')
     .lean()
     .exec();

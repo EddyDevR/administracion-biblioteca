@@ -21,7 +21,7 @@ router.get(['/showDashboard', '/projects'], projectController.showDashboard);
 router.get('/add', projectController.addForm);
 
 // GET "/project/lendBooks"
-router.get('/lendBooks', projectController.lendBooks);
+router.get('/lendBooks/:id', projectController.lendBooks);
 
 // POST "/project/add"
 router.post(
@@ -38,6 +38,7 @@ router.get('/showBooks', projectController.showBooks);
 
 // GET "/project/edit/:id"
 router.get('/edit/:id', projectController.edit);
+router.put('/lendBooksAction/:id', projectController.lendBooksAction);
 
 // PUT "/project/edit/:id"
 router.put(

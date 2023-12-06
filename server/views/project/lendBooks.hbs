@@ -1,21 +1,150 @@
-<h1>Prestamos y Devoluciones</h1>
-<div class="row">
-    {{#each projects}}
-    <div class="col s12">
-        <div class="card teal darken-4">
-            <div class="card-content teal-text text-lighten-5">
-                <h1>Titulo: {{titulo}}</h1>
-                <h5>Autor: {{autor}}</h5>
-                <h5>Categoria: {{categoria}}</h5>
-                <h5>ISBN: {{isbn}}</h5>
-                <h5>Copias disponibles: {{copias_disponibles}}</h5>
-            </div>
-            <div class="card-action">
-
-            </div>
+<div class='row'>
+  <div class='col s12 m10 offset-m1 18 offset-12'>
+    <div class='card'>
+      <div class='card-image'>
+        <img src='https://img.chilango.com/2022/08/bibliotecas-publicas-cdmx-1024x576.jpg' alt='Imagen creacion de proyecto' />
+        <span class='card-title add-project' style='font-weight: bolder;'>
+          Pedir  libro
+        </span>
+      </div>
+      <form autocomplete="off" action="/project/lendBooksAction/{{ project._id }}?_method=put" method="post">
+        <div class='card-content'>
+           <div class='input-field'>
+            <label for='matricula' >
+              Matricula de Estudiante
+            </label>
+            <input
+              type='number'
+              id='matricula'
+              name='matricula'
+              placeholder='Ingrese matricula del estudiante'
+              class='validate'
+              required
+              
+            />
+          
+          <div class='input-field'>
+            <label for='project-name' >
+              Titulo del libro
+            </label>
+            <input
+              type='text'
+              id='titulo'
+              name='titulo'
+              placeholder='Ingrese titulo de libro'
+              class='validate'
+              value='{{project.titulo}}'
+              required
+              disabled
+            />
+            <span
+              class='helper-text'
+              data-error='👆 Es necesario ingresar el titulo'
+              data-success='✅ Correcto'
+            ></span>
+            {{#if errorModel.name}}
+              <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>
+              Autor
+            </label>
+            <input
+              type='text'
+              id='autor'
+              name='autor'
+              placeholder='Ingrese autor de libro'
+              class='validate'
+              value='{{project.autor}}'
+              required
+              disabled
+            />
+            <span
+              class='helper-text'
+              data-error='👆 Es necesario ingresar el autor'
+              data-success='✅ Correcto'
+            ></span>
+            {{#if errorModel.name}}
+              <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>
+              Categoría
+            </label>
+            <input
+              type='text'
+              id='categoria'
+              name='categoria'
+              placeholder='Ingrese categoria de libro'
+              class='validate'
+              value='{{project.categoria}}'
+              required
+              disabled
+            />
+            <span
+              class='helper-text'
+              data-error='👆 Es necesario ingresar categoria'
+              data-success='✅ Correcto'
+            ></span>
+            {{#if errorModel.name}}
+              <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+        <div class='input-field'>
+            <label for='project-name'>
+              ISBN
+            </label>
+            <input
+              type='text'
+              id='isbn'
+              name='isbn'
+              placeholder='Ingrese ISBN'
+              class='validate'
+              value='{{project.isbn}}'
+              required
+              disabled
+            />
+            <span
+              class='helper-text'
+              data-error='👆 Es necesario ingresar el ISBN'
+              data-success='✅ Correcto'
+            ></span>
+            {{#if errorModel.name}}
+              <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+          <div class='input-field'>
+            <label for='project-name'>
+              Copias disponibles
+            </label>
+            <input
+              type='text'
+              id='copias_disponibles'
+              name='copias_disponibles'
+              placeholder='Ingrese el numero de copias disponibles'
+              class='validate'
+              value='{{project.copias_disponibles}}'
+              required
+              disabled
+            />
+            <span
+              class='helper-text'
+              data-error='👆 Es necesario ingresar copias disponibles'
+              data-success='✅ Correcto'
+            ></span>
+            {{#if errorModel.name}}
+              <span style='color: crimson;'>Error: {{errorModel.name}}</span>
+            {{/if}}
+          </div>
+        <div class='card-action'>
+          <button class='blue darken-3 waves-effect waves-light btn'>
+            <i class='material-icons left'>edit</i>
+            Reservar Libro
+          </button>
         </div>
+      </form>
     </div>
-    {{else}}
-    <p>No hay libros que listar.</p>
-    {{/each}}
+  </div>
 </div>
